@@ -23,7 +23,7 @@
 <script setup>
 const links = [
     'home',
-    'service',
+    'profile',
     'contact',
     'users'
 ]

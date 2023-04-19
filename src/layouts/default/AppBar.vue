@@ -1,10 +1,11 @@
 <template>
   <BannerLogo />
-  <v-app-bar>
-    <v-app-bar-title>
+  <v-app-bar density="compact">
+    <!-- <v-app-bar-title>
       <v-icon icon="mdi-account-circle" />
-      Hola!! Andres
-    </v-app-bar-title>
+      Hola Andres
+    </v-app-bar-title> -->
+    
     <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
   </v-app-bar>
   <v-navigation-drawer v-model="drawer" location="center">
@@ -36,7 +37,7 @@ const views = [
   },
   {
     title: "Contactanos",
-    value: "home"//Modificar Ruta, ruta por defecto
+    value: "contact"//Modificar Ruta, ruta por defecto
   },
   {
     title: "Quienes somos",

@@ -1,11 +1,11 @@
 // Composables
 import { createRouter, createWebHistory } from 'vue-router'
-import ServiceView from '../views/ServiceView.vue'
 import ContactView from '../views/ContactView.vue'
 import UsersView from '@/views/UsersView.vue'
 import UserView from '@/views/UserView.vue'
 import LoginView from '@/views/LoginView.vue'
 import RegisterView from '@/views/RegisterView.vue'
+import ProfileView from '@/views/ProfileView.vue'
 
 const routes = [
   {
@@ -13,7 +13,7 @@ const routes = [
     component: () => import('@/layouts/default/Default.vue'),
     children: [
       {
-        path: '/home',
+        path: '/',
         name: 'home',
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
@@ -21,9 +21,9 @@ const routes = [
         component: () => import(/* webpackChunkName: "home" */ '@/views/Home.vue'),
       },
       {
-        path:'/service',
-        name:'service',
-        component: ServiceView,
+        path:'/profile',
+        name:'profile',
+        component: ProfileView,
       },
       {
         path: '/login',

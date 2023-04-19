@@ -13,7 +13,7 @@
             <v-btn :to="{name:'home'}" class="mx-2">CANCELAR</v-btn>
           </v-col>
           <v-col cols="6" class="text-center">
-            <v-btn :to="{name:'service'}" type="submit" class="mx-2">INGRESAR</v-btn>
+            <v-btn :to="{name:'profile'}" type="submit" class="mx-2">INGRESAR</v-btn>
           </v-col>
                 </v-row>
             </v-container>
