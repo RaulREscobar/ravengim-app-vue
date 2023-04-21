@@ -1,5 +1,5 @@
 <template>
-  <v-footer class="bg-grey-lighten-1">
+  <v-footer class="bg-grey-lighten-1 mt-10">
     <v-row justify="center" no-gutters>
       <router-link 
         v-for="link in links"
@@ -8,9 +8,9 @@
         variant="text"
         class="mx-2"
         rounded="xl"
-        :to="{name:link}"
+        :to="{name:link.routeName}"
       >
-        {{ link }}
+        {{ link.name }}
       </router-link >
 
       <v-col class="text-center mt-4" cols="12">
@@ -22,9 +22,17 @@
 
 <script setup>
 const links = [
-    'home',
-    'profile',
-    'contact',
-    'users'
+    {
+      name: "Iniciar Sesión",
+      routeName: "login"
+    },
+    {
+      name: "Contactanos",
+      routeName: "contact"
+    },
+    {
+      name: "Quienes somos",
+      routeName: "aboutUs"
+    },
 ]
 </script>

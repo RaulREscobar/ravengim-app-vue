@@ -1,11 +1,6 @@
 <template>
   <BannerLogo />
-  <v-app-bar density="compact">
-    <!-- <v-app-bar-title>
-      <v-icon icon="mdi-account-circle" />
-      Hola Andres
-    </v-app-bar-title> -->
-    
+  <v-app-bar density="compact">  
     <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
   </v-app-bar>
   <v-navigation-drawer v-model="drawer" location="center">
@@ -32,28 +27,18 @@ const views = [
     value: "login"
   },
   {
-    title: "Mis pagos",
-    value: "home" //Modificar Ruta, ruta por defecto
-  },
-  {
     title: "Contactanos",
-    value: "contact"//Modificar Ruta, ruta por defecto
+    value: "contact"
   },
   {
     title: "Quienes somos",
-    value: "home"
+    value: "aboutUs"
   },
   {
     title: "Registrar Ususario",
     value: "register"
   },
-
   //Agregar mas rutas AQUI
-
-  {
-    title: "Salir",
-    value: "home" // Crear ruta
-  }
 ]
 //
 </script>

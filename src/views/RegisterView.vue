@@ -7,5 +7,4 @@
 import FormRegister from '@/components/FormRegister.vue';
 import TitleView from '@/components/TitleView.vue';
 
-
 </script>

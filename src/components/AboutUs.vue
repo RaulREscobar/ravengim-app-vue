@@ -1,5 +1,5 @@
 <template>
-    <TitleSection title="NUESTROS VALORES"  class="pb-0"/>
+    <TitleSection title="COMO EMPEZAMOS"  class="pb-0"/>
     <v-container >
         <v-timeline side="end" align="start">
             <v-timeline-item v-for="item in items" :icon="item.icon" :key="item.id" :dot-color="item.color" size="small" density="compact">
