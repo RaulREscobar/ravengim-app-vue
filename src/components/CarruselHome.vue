@@ -9,16 +9,13 @@
 
 const imgCarruselHome = [
     {
-        src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
+        src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Gym_Free-weights_Area.jpg/800px-Gym_Free-weights_Area.jpg',
     },
     {
-        src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
+        src: 'https://pr0.nicelocal.com.mx/a26amgsyBl1gkP968iCcRQ/587x440,q85/4px-BW84_n0QJGVPszge3NRBsKw-2VcOifrJIjPYFYkOtaCZxxXQ2edm-dQ4ssPaXAj9Du0eSpXjzoCvKPFaHx-mf_GipPoWzsrl4fn_StGCrvhGdkvnXA',
     },
     {
-        src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
-    },
-    {
-        src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
+        src: 'https://cdns3.fitfit.fitness/es/media/items/540x280/5835-MAS-FITNESS-SPORT-fJ7IO.jpg',
     },
 ]
 </script>
