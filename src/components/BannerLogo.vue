@@ -1,6 +1,6 @@
 <template>
-   <v-app-bar height="100" flat>
-    <v-img src="../assets/ravengin-banner-100x400.png" height="100" cover></v-img>
+   <v-app-bar scroll-behavior="hide" height="100"  image="../assets/ravengin-banner-100x375.webp">
+    <!-- <v-img src="../assets/ravengin-banner-100x375.webp" height="100" cover></v-img> -->
   </v-app-bar>
 </template>
 

@@ -1,15 +1,22 @@
 <template>
   <BannerLogo />
-  <v-app-bar density="compact">  
+  <v-app-bar density="compact">
     <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+    
+    <v-app-bar-title>Hola</v-app-bar-title>
+
+    <v-spacer></v-spacer>
+
+    <v-btn icon="mdi-account-circle">
+    </v-btn>
+
+    <v-btn @click="logout" icon="mdi-exit-to-app">
+    </v-btn>
   </v-app-bar>
   <v-navigation-drawer v-model="drawer">
     <v-list>
       <v-list-item v-for="link in views" :key="link.title" :to="{ name: link.value }">
         {{ link.title }}
-      </v-list-item>
-      <v-list-item @click="logout">
-        Salir
       </v-list-item>
     </v-list>
   </v-navigation-drawer>
@@ -30,7 +37,7 @@ const logout = () => {
       error: error,
     })
   })
- console.log(auth.currentUser)
+  console.log(auth.currentUser)
 }
 
 const drawer = ref(false);
