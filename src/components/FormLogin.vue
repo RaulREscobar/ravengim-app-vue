@@ -22,17 +22,22 @@
 </template>
 
 <script setup>
-    import {ref} from 'vue'
-    import { getAuth, signInWithEmailAndPassword} from 'firebase/auth'
+    import { ref } from 'vue'
+    import { auth } from '@/firebase';
+    import { signInWithEmailAndPassword} from 'firebase/auth'
+    import { useAppStore } from '@/store/app';
+
 
     let email = ref("");
     let password = ref("")
+    const store = useAppStore();
 
-
+    
     const authUser = () => {
-        const auth = getAuth()
         signInWithEmailAndPassword(auth, email.value, password.value).then(()=> {
             alert('Éxito!')
+            store.user = auth.currentUser
+            console.log(store.user);
         })
         .catch((error) => {
             alert("Error: " + error.message)

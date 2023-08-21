@@ -1,6 +1,6 @@
 <template>
    <v-form v-model="valid">
-        <v-row justify="center">
+        <v-row justify="center" class="d-flex flex-column align-center">
             <v-col cols="10" md="4">
                 <v-text-field 
                 variant="outlined"
@@ -41,5 +41,14 @@
 </template>
 
 <script setup>
+
+const firstname ="nombre"
+const email ="nombre"
+const textArea ="nombre"
+
+const nameRules = () => {}
+const emailRules = () => {}
+const emailTextArea = () => {}
+
 
 </script>

@@ -3,7 +3,7 @@
   <AboutUs />
   <ParallaxHome />
   <TrainingWithUs />
-  <Ubication />  
+  <Ubication />
   <ContactView />
   <AboutUsView />
 </template>
