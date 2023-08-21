@@ -1,6 +1,5 @@
 <template>
-  <BannerLogo />
-  <v-app-bar density="compact">
+  <v-app-bar id="bar-nro2" density="compact" flat="true">
     <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
     
     <v-app-bar-title>Hola</v-app-bar-title>
