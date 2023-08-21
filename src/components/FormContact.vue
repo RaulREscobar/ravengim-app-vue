@@ -1,5 +1,5 @@
 <template>
-   <v-form v-model="valid">
+   <v-form>
         <v-row justify="center" class="d-flex flex-column align-center">
             <v-col cols="10" md="4">
                 <v-text-field 

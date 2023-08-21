@@ -9,7 +9,6 @@ import ProfileView from '@/views/ProfileView.vue'
 import AboutUsView from '@/views/AboutUsView.vue'
 import { auth } from '../firebase.js'
 
-console.log(auth.currentUser)
 const routes = [
   {
     path: '/',
