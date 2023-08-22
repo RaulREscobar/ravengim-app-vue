@@ -36,13 +36,13 @@ const logout = () => {
   signOut(auth).then(() => {
     authStore.logout()
     router.push({ name: 'home' })
-
-  }).catch((error) => {
-    console.log({
-      msj: "Hubo un error al cerrar sessión",
-      error: error,
-    })
   })
+    .catch((error) => {
+      console.log({
+        msj: "Hubo un error al cerrar sessión",
+        error: error,
+      })
+    })
 }
 
 const drawer = ref(false);
@@ -50,22 +50,27 @@ const views = [
   {
     title: "Inicio",
     value: "home",
+    adminNeed: false,
   },
   {
     title: "Iniciar sesión",
-    value: "login"
+    value: "login",
+    adminNeed: false,
   },
   {
     title: "Contactanos",
-    value: "contact"
+    value: "contact",
+    adminNeed: false,
   },
   {
     title: "Quienes somos",
-    value: "aboutUs"
+    value: "aboutUs",
+    adminNeed: false,
   },
   {
     title: "Registrar Ususario",
-    value: "register"
+    value: "register",
+    adminNeed: true,
   },
   //Agregar mas rutas AQUI
 ]

@@ -8,6 +8,8 @@ import RegisterView from '@/views/RegisterView.vue'
 import ProfileView from '@/views/ProfileView.vue'
 import AboutUsView from '@/views/AboutUsView.vue'
 import { auth } from '../firebase.js'
+import { useAuthStore } from '@/store/authStore'
+
 
 const routes = [
   {
@@ -27,13 +29,13 @@ const routes = [
         }
       },
       {
-        path:'/profile',
-        name:'profile',
+        path: '/profile',
+        name: 'profile',
         component: ProfileView,
         beforeEnter: (to, from, next) => {
-          if (auth.currentUser === null){
+          if (auth.currentUser === null) {
             next('login');
-          }else {
+          } else {
             next();
           }
         },
@@ -47,9 +49,9 @@ const routes = [
         name: 'login',
         component: LoginView,
         beforeEnter: (to, from, next) => {
-          if (auth.currentUser !== null){
+          if (auth.currentUser !== null) {
             next('profile');
-          }else {
+          } else {
             next();
           }
         },
@@ -65,11 +67,19 @@ const routes = [
         meta: {
           requiereAuth: true,
           rol: "admin",
+        },
+        beforeEnter: (to, from, next) => {
+          const authStore = useAuthStore();
+          if (to.meta.rol !== authStore.user.rol) {
+            next('/')
+          } else {
+            next()
+          }
         }
       },
       {
-        path:'/contact',
-        name:'contact',
+        path: '/contact',
+        name: 'contact',
         component: ContactView,
         meta: {
           requiereAuth: false,
@@ -77,8 +87,8 @@ const routes = [
         }
       },
       {
-        path:'/AboutUs',
-        name:'aboutUs',
+        path: '/AboutUs',
+        name: 'aboutUs',
         component: AboutUsView,
         meta: {
           requiereAuth: false,
@@ -95,7 +105,7 @@ const routes = [
         }
       },
       {
-        path:'/users/:id',
+        path: '/users/:id',
         name: 'user',
         component: UserView,
         meta: {
@@ -112,31 +122,12 @@ const router = createRouter({
   routes,
 })
 
-/* router.beforeEach((to, from, next)=> {
-  const auth = getAuth().currentUser != null;
-  const needAuth = to.meta.requiereAut;
-
-  if(needAuth && !auth) {
+router.beforeEach((to, from, next) => {
+  if (auth.currentUser == null && to.name == "register") {
     next('login')
   } else {
     next()
   }
-}) */
-
-/* router.beforeEach((to, from, next) => {
-  const rol = "user";
-  const needRol = to.meta.rol;
-
-  if(needRol != null){    
-    if(needRol == rol){
-      next()
-    } else {
-      next('/')
-    }
-  } else {
-    next()
-    console.log(from)
-  }
-}) */
+})
 
 export default router
