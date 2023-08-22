@@ -1,7 +1,7 @@
 <template>
-  <v-app-bar id="bar-nro2" density="compact" flat="true">
+  <v-app-bar id="bar-nro2" density="compact">
     <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-    
+
     <v-app-bar-title>Hola</v-app-bar-title>
 
     <v-spacer></v-spacer>
@@ -23,20 +23,26 @@
 
 <script setup>
 import { ref } from 'vue'
-import BannerLogo from '@/components/BannerLogo.vue';
 import { auth } from '@/firebase';
 import { signOut } from 'firebase/auth';
+import { useAuthStore } from '@/store/authStore';
+import { useRouter } from 'vue-router';
+
+
+const authStore = useAuthStore();
+const router = useRouter();
 
 const logout = () => {
   signOut(auth).then(() => {
-    console.log(auth.currentUser)
+    authStore.logout()
+    router.push({ name: 'home' })
+
   }).catch((error) => {
     console.log({
       msj: "Hubo un error al cerrar sessión",
       error: error,
     })
   })
-  console.log(auth.currentUser)
 }
 
 const drawer = ref(false);
