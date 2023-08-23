@@ -51,7 +51,11 @@ const authUser = async () => {
     const userRef = await getDocs(userQuery);
     //buscamos el rol del usuario en la BD
     userRef.forEach((doc) => {
-        authStore.login(userUid, doc.data().rol)
+        authStore.login({
+            uid: userUid,
+            rol: doc.data().rol,
+            name: doc.data().name
+        })
         console.log(doc.data().rol)
     })
     //volvemos al home

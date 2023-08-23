@@ -15,7 +15,13 @@ export const useAuthStore = defineStore('AuthStore', () => {
             const usersRef = collection(db, 'users');
             const userQuery = query(usersRef, where("email", "==", user.email));
             const userRef = await getDocs(userQuery)
-            userRef.forEach((doc) => { login(user.uid, doc.data().rol) })
+            userRef.forEach((doc) => {
+                login({
+                    uid: user.uid,
+                    rol: doc.data().rol,
+                    name: doc.data().name,
+                })
+            })
         } else {
             //si no esta logueado, no hacemos nada.
             console.log("No hay usuarios logueado")
@@ -23,10 +29,11 @@ export const useAuthStore = defineStore('AuthStore', () => {
     })
 
     //registramos al usuario
-    function login(uid, rol) {
+    function login(object) {
         user.value = {
-            uid: uid,
-            rol: rol,
+            uid: object.uid,
+            rol: object.rol,
+            name: object.name,
         }
     }
 
