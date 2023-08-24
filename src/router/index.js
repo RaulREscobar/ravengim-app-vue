@@ -7,9 +7,10 @@ import LoginView from '@/views/LoginView.vue'
 import RegisterView from '@/views/RegisterView.vue'
 import ProfileView from '@/views/ProfileView.vue'
 import AboutUsView from '@/views/AboutUsView.vue'
-import { auth } from '../firebase.js'
+import { auth } from '@/firebase.js'
 import { useAuthStore } from '@/store/authStore'
-
+import { getAuth } from 'firebase/auth'
+import { ref } from 'vue'
 
 const routes = [
   {
@@ -122,12 +123,15 @@ const router = createRouter({
   routes,
 })
 
-router.beforeEach((to, from, next) => {
+/* router.beforeEach((to, from, next) => {
+  const authStore = ref(useAuthStore());
+  console.log(authStore.value.user.rol)
+  next()
   if (auth.currentUser == null && to.name == "register") {
     next('login')
   } else {
     next()
   }
-})
+}) */
 
 export default router

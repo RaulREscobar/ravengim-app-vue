@@ -52,9 +52,6 @@ const name = ref(""),
   password = ref(""),
   rol = "user";
 
-
-
-
 const registerUser = async (name, lastName, email, phone, adress, password, rol = "user") => {
 
   const infoUser = await createUserWithEmailAndPassword(

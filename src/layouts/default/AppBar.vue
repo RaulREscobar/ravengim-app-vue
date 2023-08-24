@@ -56,7 +56,6 @@ onAuthStateChanged(auth, async (user) => {
     isLoget.value = true;
     rol.value = await authStore.user.rol;
     name.value = await authStore.user.name;
-    console.log(name.value)
   } else { isLoget.value = false }
 });
 
@@ -80,6 +79,10 @@ const viewsAdmin = [
     title: "Registrar Ususario",
     value: "register",
   },
+  {
+    title: "Usuarios",
+    value: "users",
+  }
 ];
 
 const views = [
@@ -99,6 +102,10 @@ const views = [
     title: "Quienes somos",
     value: "aboutUs",
   },
+  {
+    title: "Mis Datos",
+    value: "profile"
+  }
 
   //Agregar mas rutas AQUI
 ]
