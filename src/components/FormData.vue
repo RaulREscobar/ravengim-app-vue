@@ -1,20 +1,19 @@
 <template>
     <v-container>
         <v-card>
-            <v-row>
-                <v-card-title>Mis datos</v-card-title>
-                <v-spacer></v-spacer>
+            <v-card-title>
+                Mis datos
                 <BtnEditData />
-            </v-row>
+            </v-card-title>
             <v-row>
                 <v-col cols="6">
                     <v-card-item title="Nombre" :subtitle=name></v-card-item>
-                    <v-card-item title="Apellido" :subtitle=lastName></v-card-item>
+                    <v-card-item title="Dirección" :subtitle=adress></v-card-item>
                     <v-card-item title="Telefono" :subtitle=phone></v-card-item>
 
                 </v-col>
                 <v-col cols="6">
-                    <v-card-item title="Dirección" :subtitle=adress></v-card-item>
+                    <v-card-item title="Apellido" :subtitle=lastName></v-card-item>
                     <v-card-item title="E-mail" :subtitle=email></v-card-item>
                 </v-col>
             </v-row>
