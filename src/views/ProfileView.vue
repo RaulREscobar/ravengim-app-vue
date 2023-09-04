@@ -1,6 +1,8 @@
 <template>
     <Avatar />
+    <Suspense>
     <FormData />
+    </Suspense>
 </template>
 
 <script setup>
