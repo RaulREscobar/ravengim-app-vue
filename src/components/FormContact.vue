@@ -42,9 +42,9 @@
 
 <script setup>
 
-const firstname ="nombre"
-const email ="nombre"
-const textArea ="nombre"
+const firstname =""
+const email =""
+const textArea =""
 
 const nameRules = () => {}
 const emailRules = () => {}

@@ -102,7 +102,15 @@ const routes = [
         component: UsersView,
         meta: {
           requiereAuth: true,
-          rol: "user",
+          rol: "admin",
+        },
+        beforeEnter: (to, from, next) => {
+          const authStore = useAuthStore();
+          if (to.meta.rol !== authStore.user.rol) {
+            next('/')
+          } else {
+            next()
+          }
         }
       },
       {
@@ -111,7 +119,15 @@ const routes = [
         component: UserView,
         meta: {
           requiereAuth: true,
-          rol: "user",
+          rol: "admin",
+        },
+        beforeEnter: (to, from, next) => {
+          const authStore = useAuthStore();
+          if (to.meta.rol !== authStore.user.rol) {
+            next('/')
+          } else {
+            next()
+          }
         }
       }
     ],

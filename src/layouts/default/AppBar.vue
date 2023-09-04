@@ -10,11 +10,11 @@
     <v-btn @click="goToLogin" prepend-icon="mdi-login" v-if="!isLoget">entrar</v-btn>
     <v-btn @click="logout" prepend-icon="mdi-logout-variant" v-else>salir</v-btn>
 
-    <v-btn @click.stop="drawerAdmin = !drawerAdmin" icon="mdi-dots-vertical" v-if="rol == 'admin'"></v-btn>
+    <v-btn @click.stop="drawerAdmin = !drawerAdmin" icon="mdi-dots-vertical" v-if="rol === 'admin'"></v-btn>
 
   </v-app-bar>
 
-  <v-navigation-drawer location="right" v-model="drawerAdmin">
+  <v-navigation-drawer location="right" v-model="drawerAdmin" v-if="rol === 'admin'">
     <v-list>
       <v-list-item v-for="link in viewsAdmin" :key="link.title" :to="{ name: link.value }">
         {{ link.title }}
@@ -30,13 +30,13 @@
     </v-list>
   </v-navigation-drawer>
 </template>
-
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { auth } from '@/firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { useAuthStore } from '@/store/authStore';
 import { useRouter } from 'vue-router';
+
 
 //Store and Router
 const authStore = useAuthStore();
@@ -46,21 +46,26 @@ const router = useRouter();
 
 const drawer = ref(false);
 const drawerAdmin = ref(false);
-const rol = ref(null);
+const rol = ref(authStore.user.rol);
 const name = ref("");
 const avatar = ref("");
 const isLoget = ref(false);
 
+//Si hay cambios en el store se actualizan los datos.
+watch(useAuthStore(), () => {
+  rol.value = authStore.user.rol;
+  name.value = authStore.user.name;
+})
+// si el usuario esta logueado cambia la variable de entrar o salir.
 onAuthStateChanged(auth, async (user) => {
   if (user) {
     isLoget.value = true;
-    rol.value = await authStore.user.rol;
-    name.value = await authStore.user.name;
   } else { isLoget.value = false }
 });
 
+//Función de ir al login
 const goToLogin = () => router.push('login');
-
+//Salir de sesión
 const logout = () => {
   signOut(auth).then(() => {
     authStore.logout()
@@ -74,6 +79,7 @@ const logout = () => {
     })
 }
 
+//Rutas de administrador
 const viewsAdmin = [
   {
     title: "Registrar Ususario",
@@ -85,6 +91,7 @@ const viewsAdmin = [
   }
 ];
 
+//Rutas de usuarios
 const views = [
   {
     title: "Inicio",
