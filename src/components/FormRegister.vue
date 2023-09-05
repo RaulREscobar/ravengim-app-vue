@@ -7,7 +7,10 @@
             <v-text-field v-model="name" label="Nombre" required></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
-            <v-text-field v-model="lastName" label="apellido" required></v-text-field>
+            <v-text-field v-model="lastName" label="Apellido" required></v-text-field>
+          </v-col>
+          <v-col cols="12" md="4">
+            <v-text-field v-model="dni" label="DNI" required></v-text-field>
           </v-col>
           <v-col cols="12" md="4">
             <v-text-field v-model="email" label="E-mail" type="email" required></v-text-field>
@@ -50,6 +53,7 @@ const name = ref(""),
   phone = ref(""),
   adress = ref(""),
   password = ref(""),
+  dni = ref(""),
   rol = "user";
 
 const registerUser = async (name, lastName, email, phone, adress, password, rol = "user") => {
@@ -69,6 +73,7 @@ const registerUser = async (name, lastName, email, phone, adress, password, rol 
     email,
     phone,
     adress,
+    nroSocio: dni.value + '/0',
     rol
   });
   router.push({ name: 'home' });
