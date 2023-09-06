@@ -25,11 +25,11 @@
             <v-text-field v-model="password" label="Contraseña" type="password" required></v-text-field>
           </v-col>
           <v-col cols="6" class="text-center">
-            <v-btn class="mx-2">CANCELAR</v-btn>
+            <v-btn @click.prevent="goToBack" class="mx-2">CANCELAR</v-btn>
           </v-col>
           <v-col cols="6" class="text-center">
-            <v-btn @click.prevent="registerUser(name, lastName, email, phone, adress, password)" type="submit"
-              class="mx-2">CREAR USUARIO</v-btn>
+            <v-btn @click.prevent="registerUser(name, lastName, email, phone, adress, password)" :loading="loading"
+              type="submit" class="mx-2">CREAR USUARIO</v-btn>
           </v-col>
         </v-row>
       </v-container>
@@ -54,9 +54,13 @@ const name = ref(""),
   adress = ref(""),
   password = ref(""),
   dni = ref(""),
-  rol = "user";
+  rol = "user",
+  loading = ref(false);
+
+const goToBack = () => router.go(-1);
 
 const registerUser = async (name, lastName, email, phone, adress, password, rol = "user") => {
+  loading.value = true
 
   const infoUser = await createUserWithEmailAndPassword(
     auth,
@@ -75,8 +79,12 @@ const registerUser = async (name, lastName, email, phone, adress, password, rol 
     adress,
     nroSocio: dni.value + '/0',
     rol
-  });
-  router.push({ name: 'home' });
+  })
+    .then(() => {
+      loading.value = false;
+      goToBack()
+    })
+    .catch((err) => console.log(err))
 }
 
 </script>
