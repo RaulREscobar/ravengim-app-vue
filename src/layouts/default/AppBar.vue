@@ -24,14 +24,14 @@
 
   <v-navigation-drawer v-model="drawer">
     <v-list>
-      <v-list-item v-for="link in views" :key="link.title" :to="{ name: link.value }">
+      <v-list-item :v-model="views" v-for="link in views" :key="link.title" :to="{ name: link.value }">
         {{ link.title }}
       </v-list-item>
     </v-list>
   </v-navigation-drawer>
 </template>
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, watch } from 'vue';
 import { auth } from '@/firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { useAuthStore } from '@/store/authStore';
@@ -90,16 +90,11 @@ const viewsAdmin = [
     value: "users",
   }
 ];
-
 //Rutas de usuarios
-const views = [
+const views = ref([
   {
     title: "Inicio",
     value: "home",
-  },
-  {
-    title: "Iniciar sesión",
-    value: "login",
   },
   {
     title: "Contactanos",
@@ -110,11 +105,25 @@ const views = [
     value: "aboutUs",
   },
   {
-    title: "Mis Datos",
-    value: "profile"
-  }
-
+    title: "Iniciar sesión",
+    value: "login",
+  },
   //Agregar mas rutas AQUI
-]
-//
+])
+
+
+//Si esta logueado se cambia el menu de navegación.
+watch(isLoget, () => {
+  if (isLoget.value) {
+    views.value[3] = {
+      title: "Mis Datos",
+      value: "profile"
+    }
+  } else {
+    views.value[3] = {
+      title: "Iniciar sesión",
+      value: "login",
+    }
+  }
+})
 </script>
