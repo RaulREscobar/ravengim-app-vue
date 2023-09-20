@@ -1,5 +1,6 @@
 <template>
   <CarruselHome />
+  <BtnMP />
   <AboutUs />
   <ParallaxHome />
   <TrainingWithUs />
@@ -16,4 +17,5 @@ import ParallaxHome from '@/components/ParallaxHome.vue'
 import AboutUs from '@/components/AboutUs.vue';
 import ContactView from './ContactView.vue';
 import AboutUsView from './AboutUsView.vue';
+import BtnMP from '@/components/BtnMP.vue';
 </script>
