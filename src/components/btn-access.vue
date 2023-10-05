@@ -3,7 +3,8 @@
         <v-btn @click="dialog = true" color="" icon="mdi-qrcode" class="btn-access"></v-btn>
         <v-dialog v-model="dialog" width="auto">
             <v-card>
-                <QrcodeVue :value=url :size=250 level="H" foreground="blue"/>
+                <v-card-title class="text-center"> Acceso al Gimnasio</v-card-title>
+                <QrcodeVue :value=url :size=250 :margin=1 level="H" />
             </v-card>
         </v-dialog>
     </div>

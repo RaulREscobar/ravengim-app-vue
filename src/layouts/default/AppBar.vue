@@ -13,7 +13,6 @@
     <v-btn @click.stop="drawerAdmin = !drawerAdmin" icon="mdi-dots-vertical" v-if="rol === 'admin'"></v-btn>
 
   </v-app-bar>
-
   <v-navigation-drawer location="right" v-model="drawerAdmin" v-if="rol === 'admin'">
     <v-list>
       <v-list-item v-for="link in viewsAdmin" :key="link.title" :to="{ name: link.value }">
@@ -29,6 +28,8 @@
       </v-list-item>
     </v-list>
   </v-navigation-drawer>
+
+  <btn-access v-if="isLoget" />
 </template>
 <script setup>
 import { ref, watch } from 'vue';
@@ -36,6 +37,7 @@ import { auth } from '@/firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { useAuthStore } from '@/store/authStore';
 import { useRouter } from 'vue-router';
+import BtnAccess from '@/components/btn-access.vue';
 
 
 //Store and Router
