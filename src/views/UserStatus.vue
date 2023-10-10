@@ -1,5 +1,5 @@
 <template>
-    <h2 class="text-center">Socio Nro {{ nroSocio }}</h2>
+    <h2 class="text-center">Socio Nro {{ nroSocio }}/0</h2>
     <Suspense>
         <Status :nroSocio="nroSocio" />
     </Suspense>

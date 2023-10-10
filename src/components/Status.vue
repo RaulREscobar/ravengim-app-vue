@@ -11,11 +11,10 @@
 </template>
 <script setup>
 import { ref } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { useRouter } from "vue-router";
 import { db } from '@/firebase';
 import { collection, getDocs, query, where } from "firebase/firestore";
 
-const route = useRoute();
 const router = useRouter();
 const props = defineProps({
     nroSocio: String
@@ -39,7 +38,9 @@ const goToHome = () => { router.push({ name: 'home' }) }
 const usersRef = collection(db, 'users');
 const userQuery = query(usersRef, where("nroSocio", "==", props.nroSocio + '/0'));
 const userRef = await getDocs(userQuery)
-userRef.forEach(user => {
+
+try {
+    userRef.forEach(user => {
     //Creo una variable para guardar la fecha del ultimo pago.
     const datePay = user.data().payments[0].date.toDate()
     //Si la fecha de pago es de este mes seteamos latePayment en false
@@ -57,4 +58,8 @@ userRef.forEach(user => {
     lastName.value = user.data().lastName;
     phone.value = user.data().phone;
 })
+} catch (error) {
+    console.error(error)
+    latePayment.value = true;
+}
 </script>
