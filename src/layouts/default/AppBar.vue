@@ -29,7 +29,8 @@
     </v-list>
   </v-navigation-drawer>
 
-  <btn-access v-if="isLoget" />
+  <BtnAccess v-if="isLoget" />
+  <BtnQrReader v-if="rol === 'admin'" />
 </template>
 <script setup>
 import { ref, watch } from 'vue';
@@ -37,7 +38,8 @@ import { auth } from '@/firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { useAuthStore } from '@/store/authStore';
 import { useRouter } from 'vue-router';
-import BtnAccess from '@/components/btn-access.vue';
+import BtnAccess from '@/components/BtnAccess.vue';
+import BtnQrReader from '@/components/BtnQrReader.vue';
 
 
 //Store and Router
@@ -67,6 +69,7 @@ onAuthStateChanged(auth, async (user) => {
 
 //Función de ir al login
 const goToLogin = () => router.push('login');
+
 //Salir de sesión
 const logout = () => {
   signOut(auth).then(() => {
@@ -90,7 +93,7 @@ const viewsAdmin = [
   {
     title: "Usuarios",
     value: "users",
-  }
+  },
 ];
 //Rutas de usuarios
 const views = ref([

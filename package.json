@@ -15,10 +15,12 @@
     "firebase": "^9.23.0",
     "pinia": "^2.0.23",
     "qrcode": "^1.5.3",
+    "qrcode-reader-vue3": "^3.1.2",
     "qrcode.vue": "^3.4.1",
     "roboto-fontface": "*",
     "vue": "^3.2.13",
     "vue-router": "^4.0.0",
+    "vue3-qr-reader": "^1.0.0",
     "vuetify": "^3.0.0",
     "webfontloader": "^1.0.0"
   },
