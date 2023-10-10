@@ -28,14 +28,16 @@
       </v-list-item>
     </v-list>
   </v-navigation-drawer>
-
-  <BtnAccess v-if="isLoget" />
+  <Suspense>
+    <BtnAccess :nroSocio="nroSocio" v-if="isLoget" />
+  </Suspense>
   <BtnQrReader v-if="rol === 'admin'" />
 </template>
 <script setup>
 import { ref, watch } from 'vue';
-import { auth } from '@/firebase';
+import { auth, db } from '@/firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { getDoc, doc } from "firebase/firestore";
 import { useAuthStore } from '@/store/authStore';
 import { useRouter } from 'vue-router';
 import BtnAccess from '@/components/BtnAccess.vue';
@@ -47,18 +49,23 @@ const authStore = useAuthStore();
 const router = useRouter();
 
 //variables para manejar que vera el usuario.
-
 const drawer = ref(false);
 const drawerAdmin = ref(false);
 const rol = ref(authStore.user.rol);
 const name = ref("");
 const avatar = ref("");
 const isLoget = ref(false);
+const nroSocio = ref('')
 
 //Si hay cambios en el store se actualizan los datos.
-watch(useAuthStore(), () => {
+watch(useAuthStore(), async () => {
   rol.value = authStore.user.rol;
   name.value = authStore.user.name;
+
+  //hacemos la petición para obtener el nro de socio
+  const docRef = doc(db, 'users', authStore.user.uid);
+  const userRef = await getDoc(docRef);
+  nroSocio.value = userRef.data().nroSocio;
 })
 // si el usuario esta logueado cambia la variable de entrar o salir.
 onAuthStateChanged(auth, async (user) => {

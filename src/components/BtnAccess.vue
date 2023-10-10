@@ -4,7 +4,9 @@
         <v-dialog v-model="dialog" width="auto">
             <v-card>
                 <v-card-title class="text-center"> Acceso al Gimnasio</v-card-title>
-                <QrcodeVue :value=nroSocio :size=250 :margin=1 level="H" />
+                <Suspense>
+                    <QrcodeVue :value="props.nroSocio.slice(0, -2)" :size=250 :margin=1 level="H" />
+                </Suspense>
             </v-card>
         </v-dialog>
     </div>
@@ -21,7 +23,11 @@
 import QrcodeVue from 'qrcode.vue';
 import { ref } from 'vue';
 
-const dialog = ref(false)
-const nroSocio = ref('22226666')
+const dialog = ref(false);
+const props = defineProps({
+    nroSocio: String
+});
+
+
 
 </script>
