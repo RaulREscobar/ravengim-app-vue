@@ -13,7 +13,6 @@
     <v-btn @click.stop="drawerAdmin = !drawerAdmin" icon="mdi-dots-vertical" v-if="rol === 'admin'"></v-btn>
 
   </v-app-bar>
-
   <v-navigation-drawer location="right" v-model="drawerAdmin" v-if="rol === 'admin'">
     <v-list>
       <v-list-item v-for="link in viewsAdmin" :key="link.title" :to="{ name: link.value }">
@@ -29,13 +28,20 @@
       </v-list-item>
     </v-list>
   </v-navigation-drawer>
+  <Suspense>
+    <BtnAccess :nroSocio="nroSocio" v-if="isLoget" />
+  </Suspense>
+  <BtnQrReader v-if="rol === 'admin'" />
 </template>
 <script setup>
 import { ref, watch } from 'vue';
-import { auth } from '@/firebase';
+import { auth, db } from '@/firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { getDoc, doc } from "firebase/firestore";
 import { useAuthStore } from '@/store/authStore';
 import { useRouter } from 'vue-router';
+import BtnAccess from '@/components/BtnAccess.vue';
+import BtnQrReader from '@/components/BtnQrReader.vue';
 
 
 //Store and Router
@@ -43,18 +49,23 @@ const authStore = useAuthStore();
 const router = useRouter();
 
 //variables para manejar que vera el usuario.
-
 const drawer = ref(false);
 const drawerAdmin = ref(false);
 const rol = ref(authStore.user.rol);
 const name = ref("");
 const avatar = ref("");
 const isLoget = ref(false);
+const nroSocio = ref('')
 
 //Si hay cambios en el store se actualizan los datos.
-watch(useAuthStore(), () => {
+watch(useAuthStore(), async () => {
   rol.value = authStore.user.rol;
   name.value = authStore.user.name;
+
+  //hacemos la petición para obtener el nro de socio
+  const docRef = doc(db, 'users', authStore.user.uid);
+  const userRef = await getDoc(docRef);
+  nroSocio.value = userRef.data().nroSocio;
 })
 // si el usuario esta logueado cambia la variable de entrar o salir.
 onAuthStateChanged(auth, async (user) => {
@@ -65,6 +76,7 @@ onAuthStateChanged(auth, async (user) => {
 
 //Función de ir al login
 const goToLogin = () => router.push('login');
+
 //Salir de sesión
 const logout = () => {
   signOut(auth).then(() => {
@@ -88,7 +100,7 @@ const viewsAdmin = [
   {
     title: "Usuarios",
     value: "users",
-  }
+  },
 ];
 //Rutas de usuarios
 const views = ref([

@@ -35,7 +35,7 @@
 </template>
   
 <script setup>
-import { auth, db } from '@/firebase';
+import { db } from '@/firebase';
 import { collection, getDocs, query, doc, updateDoc, where } from "firebase/firestore";
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';

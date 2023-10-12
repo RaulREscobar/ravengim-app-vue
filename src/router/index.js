@@ -9,8 +9,10 @@ import ProfileView from '@/views/ProfileView.vue'
 import AboutUsView from '@/views/AboutUsView.vue'
 import { auth } from '@/firebase.js'
 import { useAuthStore } from '@/store/authStore'
+import UserStatus from '@/views/UserStatus.vue'
 import { getAuth } from 'firebase/auth'
 import { ref } from 'vue'
+
 
 const routes = [
   {
@@ -128,26 +130,31 @@ const routes = [
           } else {
             next()
           }
-        }
-      }
+        },
+      },
+
     ],
   },
+  {
+    path: '/status/:id',
+    component: UserStatus,
+    meta: {
+      requiereAuth: true,
+      rol: "admin",
+    },
+    beforeEnter: async (to, from) => {
+      const authStore = useAuthStore();
+      console.log(authStore.user.rol)
+      if (to.meta.rol !== authStore.user.rol) {
+        return { name: 'home' }
+      }
+    }
+  }
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
 })
-
-/* router.beforeEach((to, from, next) => {
-  const authStore = ref(useAuthStore());
-  console.log(authStore.value.user.rol)
-  next()
-  if (auth.currentUser == null && to.name == "register") {
-    next('login')
-  } else {
-    next()
-  }
-}) */
 
 export default router

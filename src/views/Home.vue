@@ -8,7 +8,6 @@
   <ContactView />
   <AboutUsView />
 </template>
-
 <script setup>
 import CarruselHome from '@/components/CarruselHome.vue';
 import TrainingWithUs from '@/components/TrainingWithUs.vue';
