@@ -48,7 +48,7 @@ try {
         datePay.value = user.data().payments[0].date.toDate()
         valuePay.value = user.data().payments[0].value
         //Si la fecha de pago es de este mes seteamos latePayment en false
-        if (datePay.value < firstDay && now < thenthDay) {
+       /*  if (datePay.value < firstDay && now < thenthDay) {
             latePayment.value = false
         } else if (datePay.value > firstDay && now > thenthDay) {
             latePayment.value = true
@@ -56,7 +56,16 @@ try {
             latePayment.value = false;
         } else {
             latePayment.value = true;
-        }
+        } */
+
+        //new version
+         if(datePay.value == now || datePay.value >= firstDay){
+            latePayment.value = false;
+         } else if ( now > thenthDay ){
+            latePayment.value = true;
+         } else {
+            latePayment.value = false;
+         }
 
         name.value = user.data().name;
         lastName.value = user.data().lastName;
