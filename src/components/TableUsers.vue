@@ -1,49 +1,34 @@
 <template>
-    <v-table fixed-header height="100vw">
-        <thead>
-            <tr>
-                <th class="text-left">
-                    Socio Nro
-                </th>
-                <th class="text-left">
-                    Nombre
-                </th>
-                <th class="text-left">
-                    Al Día?
-                </th>
-                <th class="text-left">
-                    Tel.
-                </th>
-                <th class="text-left">
-                    Rol
-                </th>
-                <th class="text-left">
-                    Editar
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="user in dataUsers" :key="user.name">
-                <td>{{ user.nroSocio }}</td>
-                <td>{{ user.name + " " + user.lastName }}</td>
-                <td>{{ user.email }}</td><!-- Cambiar este campo por el valor de al día -->
-                <td>{{ user.phone }}</td>
-                <td>{{ user.rol }}</td>
-                <td><v-btn @click="goToEdit(user.nroSocio)" variant="flat" icon="mdi-account-edit-outline"></v-btn></td>
-            </tr>
-        </tbody>
-    </v-table>
+    <v-container>
+        <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line hide-details></v-text-field>
+    </v-container>
+    <v-data-table-virtual :headers="headers" :items="dataUsers" :search="search" items-per-page="10"
+        :sort-by="[{ key: 'name', order: 'asc' }]">
+        <template v-slot:item.actions="{ item }">
+            <v-icon class="me-2" @click="goToEdit(item.value.nroSocio)">
+                mdi-account-edit-outline
+            </v-icon>
+        </template>
+        <template v-slot:item.pay="{ item }">
+            <v-icon class="me-2" @click="goToPayment(item.value.nroSocio)">
+                mdi-cash-check
+            </v-icon>
+        </template>
+    </v-data-table-virtual>
 </template>
 <script setup>
 import { db } from '@/firebase';
 import { collection, query, getDocs } from 'firebase/firestore';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { VDataTable, VDataTableVirtual } from 'vuetify/labs/VDataTable'
+import { headers } from './headers';
 
-const dataUsers = ref([]);
 const router = useRouter();
 
 
+const dataUsers = ref([]);
+const search = ref("")
 
 const usersRef = collection(db, 'users');
 const userQuery = query(usersRef);
@@ -53,7 +38,10 @@ userRef.forEach((doc) => {
 })
 
 const goToEdit = (nroSocio) => {
+    router.push(`/users/${nroSocio.slice(0, -2)}`)
+}
 
-router.push(`/users/${nroSocio.slice(0,-2)}`)
+const goToPayment = (nroSocio) => {
+    router.push(`/newPay/${nroSocio.slice(0, -2)}`)
 }
 </script>

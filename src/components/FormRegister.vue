@@ -28,7 +28,7 @@
             <v-btn @click.prevent="goToBack" class="mx-2">CANCELAR</v-btn>
           </v-col>
           <v-col cols="6" class="text-center">
-            <v-btn @click.prevent="registerUser(name, lastName, email, phone, adress, password)" :loading="loading"
+            <v-btn @click.prevent="registerUser(name, lastName, email, phone, adress, password, rol, payments)" :loading="loading"
               type="submit" class="mx-2">CREAR USUARIO</v-btn>
           </v-col>
         </v-row>
@@ -55,11 +55,12 @@ const name = ref(""),
   password = ref(""),
   dni = ref(""),
   rol = "user",
+  payments= [{}],
   loading = ref(false);
 
 const goToBack = () => router.go(-1);
 
-const registerUser = async (name, lastName, email, phone, adress, password, rol = "user") => {
+const registerUser = async (name, lastName, email, phone, adress, password, rol = "user", payments) => {
   loading.value = true
 
   const infoUser = await createUserWithEmailAndPassword(
@@ -78,7 +79,8 @@ const registerUser = async (name, lastName, email, phone, adress, password, rol 
     phone,
     adress,
     nroSocio: dni.value + '/0',
-    rol
+    rol,
+    payments
   })
     .then(() => {
       loading.value = false;

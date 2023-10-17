@@ -98,6 +98,10 @@ const viewsAdmin = [
     value: "register",
   },
   {
+    title:"Registrar Pago",
+    value:"users",
+  },
+  {
     title: "Usuarios",
     value: "users",
   },
