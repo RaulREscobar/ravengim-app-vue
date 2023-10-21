@@ -8,9 +8,9 @@ export const headers = ref([
         title: 'Socio Nro',
     },
     { key: `name`, title: 'Nombre' },
-    { key: 'email', title: 'Al Día?' },
+    { key: 'alDia', title: 'Al Día?' },
     { key: 'phone', title: 'Tel.' },
     { key: 'rol', title: 'Rol' },
-    { key: 'actions', title: "Editar", sortable: false },
+    { key: 'edit', title: "Editar", sortable: false },
     { key: 'pay', title: "Agregar Pago", sortable: false },
 ]);
