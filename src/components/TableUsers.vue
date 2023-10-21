@@ -8,7 +8,7 @@
             <v-icon icon="mdi-check-circle" color="success"
                 v-if="item.value.payments[0].date.toDate() == now || item.value.payments[0].date.toDate() >= firstDay"></v-icon>
             <v-icon icon="mdi-close-circle" color="red" v-else-if="now > thenthDay"></v-icon>
-            <v-icon icon="mdi-check-circle" color="yellow" v-else></v-icon>
+            <v-icon icon="mdi-check-circle" color="success" v-else></v-icon>
         </template>
         <template v-slot:item.edit="{ item }">
             <v-icon class="me-2" @click="goToEdit(item.value.nroSocio)">
