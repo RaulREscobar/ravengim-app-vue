@@ -55,7 +55,7 @@ const name = ref(""),
   password = ref(""),
   dni = ref(""),
   rol = "user",
-  payments= [{}],
+  payments= [],
   loading = ref(false);
 
 const goToBack = () => router.go(-1);
