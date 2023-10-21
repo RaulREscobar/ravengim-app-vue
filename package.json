@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "generate-pwa-assets": "pwa-assets-generator --preset minimal public/new-logo.png",
+    "generate-pwa-assets": "pwa-assets-generator --preset minimal public/raven-logo-v2.png",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
