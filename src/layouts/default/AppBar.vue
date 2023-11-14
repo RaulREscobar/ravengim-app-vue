@@ -55,7 +55,7 @@ const rol = ref(authStore.user.rol);
 const name = ref("");
 const avatar = ref("");
 const isLoget = ref(false);
-const nroSocio = ref('')
+const nroSocio = ref('');
 
 //Si hay cambios en el store se actualizan los datos.
 watch(useAuthStore(), async () => {

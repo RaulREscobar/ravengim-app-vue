@@ -1,9 +1,11 @@
 <template>
     <Avatar />
     <Suspense>
-    <FormData />
+        <FormData />
     </Suspense>
-    <Payments />
+    <Suspense>
+        <Payments />
+    </Suspense>
 </template>
 
 <script setup>

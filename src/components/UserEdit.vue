@@ -15,12 +15,6 @@
                     <v-col cols="12" md="4">
                         <v-text-field v-model="adress" label="Dirección" required></v-text-field>
                     </v-col>
-                    <v-col cols="6" md="4">
-                        <v-checkbox v-model="rol" label="user" value="user" required></v-checkbox>
-                    </v-col>
-                    <v-col cols="6" md="4">
-                        <v-checkbox v-model="rol" label="admin" value="admin" required></v-checkbox>
-                    </v-col>
                     <v-col cols="6" class="text-center">
                         <v-btn @click.prevent="goToBack" class="mx-2">Volver</v-btn>
                     </v-col>

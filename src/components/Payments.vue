@@ -5,7 +5,7 @@
                 <thead>
                     <tr>
                         <th class="text-left">
-                            Mes
+                            Fecha
                         </th>
                         <th class="text-left">
                             Monto
@@ -17,9 +17,9 @@
                 </thead>
                 <tbody>
                     <tr v-for="pay in payments" :key="pay.id">
-                        <td>{{ pay.month }}</td>
-                        <td>{{ pay.amount }}</td>
-                        <td>{{ pay.status > 0 ? "Pago" : "Impago" }}</td>
+                        <td>{{ pay.date.toDate().toLocaleString('es-ES') }}</td>
+                        <td>{{ pay.value }}</td>
+                        <td>{{ pay.value > 0 ? "Pago" : "Impago" }}</td>
                     </tr>
                 </tbody>
             </v-table>
@@ -27,36 +27,16 @@
     </v-container>
 </template>
 <script setup>
-const payments = [
-    {
-        id: 1,
-        month: "Enero",
-        amount: 2365,
-        status: 1,
-    },
-    {
-        id: 2,
-        month: "Febrero",
-        amount: 2365,
-        status: 1,
-    },
-    {
-        id: 3,
-        month: "Marzo",
-        amount: 2365,
-        status: 1,
-    },
-    {
-        id: 4,
-        month: "Abril",
-        amount: 2365,
-        status: 1,
-    },
-    {
-        id: 5,
-        month: "Junio",
-        amount: 2365,
-        status: 0,
-    }
-]
+import { getDoc, doc } from 'firebase/firestore';
+import { useAuthStore } from '@/store/authStore';
+import { db } from '@/firebase';
+import { ref } from 'vue';
+
+//Stores
+const authStore = useAuthStore();
+
+const docRef = doc(db, `users/${authStore.user.uid}`);
+const userRef = await getDoc(docRef);
+const payments = ref(userRef.data().payments)
+
 </script>
