@@ -6,7 +6,7 @@
         :key="link"
         color="white"
         variant="text"
-        class="mx-2"
+        class="mx-2 text-subtitle-2 text-decoration-none text-black"
         rounded="xl"
         :to="{name:link.routeName}"
       >
@@ -14,7 +14,7 @@
       </router-link >
 
       <v-col class="text-center mt-4" cols="12">
-        {{ new Date().getFullYear() }} — <strong>❤️Nets</strong>
+        {{ new Date().getFullYear() }} — <strong>❤️Raven Gim</strong>
       </v-col>
     </v-row>
   </v-footer>
