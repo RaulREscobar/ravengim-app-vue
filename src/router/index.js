@@ -10,7 +10,7 @@ import AboutUsView from '@/views/AboutUsView.vue'
 import { auth } from '@/firebase.js'
 import { useAuthStore } from '@/store/authStore'
 import UserStatus from '@/views/UserStatus.vue'
-import NewPay from '@/views/newPay.vue'
+import NewPay from '@/views/NewPay.vue'
 import { getAuth } from 'firebase/auth'
 import { ref } from 'vue'
 
