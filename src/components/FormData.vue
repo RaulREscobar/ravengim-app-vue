@@ -16,6 +16,7 @@
                     <v-card-item title="Apellido" :subtitle=lastName></v-card-item>
                     <v-card-item title="E-mail" :subtitle=email></v-card-item>
                     <v-card-item title="Socio Nro" :subtitle=nroSocio></v-card-item>
+                    <v-btn class="text-caption" density="compact" variant="plain" >Cambiar Contraseña</v-btn>
                 </v-col>
             </v-row>
         </v-card>
