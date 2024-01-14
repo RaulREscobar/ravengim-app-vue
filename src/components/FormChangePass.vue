@@ -22,13 +22,22 @@
                 <v-dialog v-model="confirm" width="auto">
                     <v-card>
                         <v-card-text>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore
-                            et dolore magna aliqua.
+                            Estas por cambiar tu contraseña
+                            ¿ESTAS SEGURO?
                         </v-card-text>
                         <v-card-actions>
-                            <v-btn color="primary" block @click="confirm = false">Close Dialog</v-btn>
+                            <v-col cols="6">
+                                <v-btn color="primary" block @click="confirm = false">cancelar</v-btn>
+                            </v-col>
+                            <v-col cols="6">
+                                <v-btn color="primary" block @click="confirm = changePassword(newPass)">cambiar</v-btn>
+                            </v-col>
                         </v-card-actions>
+                    </v-card>
+                </v-dialog>
+                <v-dialog v-model="success" width="auto">
+                    <v-card>
+                        <v-icon icon="mdi-check-circle-outline" color="green" class="text-h1"></v-icon>
                     </v-card>
                 </v-dialog>
             </v-container>
@@ -36,6 +45,8 @@
     </v-sheet>
 </template>
 <script setup>
+import { auth } from '@/firebase';
+import { updatePassword } from 'firebase/auth';
 import { ref } from 'vue'
 import { useRouter } from 'vue-router';
 
@@ -49,6 +60,7 @@ const rules = [
 
 const alertEqual = ref(false)
 const formChangePass = ref(null)
+const success = ref(false)
 const confirm = ref(false);
 const newPass = ref('');
 const confirmPass = ref('');
@@ -56,7 +68,6 @@ const confirmPass = ref('');
 
 const openDialog = async () => {
     alertEqual.value = false;
-    const res = await formChangePass.value.validate()
 
     const { valid } = await formChangePass.value.validate()
 
@@ -67,7 +78,17 @@ const openDialog = async () => {
     }
 }
 const changePassword = (newPass) => {
+    const user = auth.currentUser
 
-
+    updatePassword(user, newPass).then((res) => {
+        confirm.value = false;
+        success.value = true;
+        setTimeout(() => (
+            success.value = false ,
+            router.push({name:'profile'})
+        ), 3000);
+    }).catch((error) => {
+        console.log(error)
+    })
 }
 </script>
