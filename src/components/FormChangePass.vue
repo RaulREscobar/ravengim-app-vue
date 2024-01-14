@@ -36,8 +36,23 @@
                     </v-card>
                 </v-dialog>
                 <v-dialog v-model="success" width="auto">
-                    <v-card>
-                        <v-icon icon="mdi-check-circle-outline" color="green" class="text-h1"></v-icon>
+                    <v-card align-self="center">
+                        <v-container class="d-flex justify-center">
+                            <v-icon icon="mdi-check-circle-outline" color="success" class="text-h1"></v-icon>
+                        </v-container>
+                        <v-card-text class="text-center">
+                            Contraseña cambiada correctamente
+                        </v-card-text>
+                    </v-card>
+                </v-dialog>
+                <v-dialog v-model="error" width="auto">
+                    <v-card align-self="center">
+                        <v-container class="d-flex justify-center">
+                            <v-icon icon="mdi-close-circle-outline" color="error" class="text-h1"></v-icon>
+                        </v-container>
+                        <v-card-text class="text-center">
+                            Algo salio mal, vuelve a intentarlo
+                        </v-card-text>
                     </v-card>
                 </v-dialog>
             </v-container>
@@ -60,6 +75,7 @@ const rules = [
 
 const alertEqual = ref(false)
 const formChangePass = ref(null)
+const error = ref(false)
 const success = ref(false)
 const confirm = ref(false);
 const newPass = ref('');
@@ -84,11 +100,15 @@ const changePassword = (newPass) => {
         confirm.value = false;
         success.value = true;
         setTimeout(() => (
-            success.value = false ,
-            router.push({name:'profile'})
+            success.value = false,
+            router.push({ name: 'profile' })
         ), 3000);
-    }).catch((error) => {
-        console.log(error)
+    }).catch(() => {
+        error.value = true;
+        setTimeout(() => {
+            error.value = false,
+                router.push({ name: 'profile' })
+        }, 4000)
     })
 }
 </script>
