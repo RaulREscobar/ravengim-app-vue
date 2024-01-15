@@ -1,6 +1,6 @@
 <template>
     <v-container>
-        <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line hide-details></v-text-field>
+        <v-text-field v-model="search" append-icon="mdi-magnify" label="Buscar" single-line hide-details></v-text-field>
     </v-container>
     <v-data-table-virtual :headers="headers" :items="dataUsers" :search="search" items-per-page="10"
         :sort-by="[{ key: 'name', order: 'asc' }]">
@@ -9,12 +9,12 @@
             <v-icon icon="mdi-close-circle" color="red" v-else></v-icon>
         </template>
         <template v-slot:item.edit="{ item }">
-            <v-icon class="me-2" @click="goToEdit(item.value.nroSocio)">
+            <v-icon class="me-2" @click="goToEdit(item.nroSocio)">
                 mdi-account-edit-outline
             </v-icon>
         </template>
         <template v-slot:item.pay="{ item }">
-            <v-icon class="me-2" @click="goToPayment(item.value.nroSocio)">
+            <v-icon class="me-2" @click="goToPayment(item.nroSocio)">
                 mdi-cash-check
             </v-icon>
         </template>
@@ -25,7 +25,6 @@ import { db } from '@/firebase';
 import { collection, query, getDocs } from 'firebase/firestore';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-/* import { VDataTable, VDataTableVirtual } from 'vuetify/labs/VDataTable' */
 import { headers } from './headers';
 
 const router = useRouter();

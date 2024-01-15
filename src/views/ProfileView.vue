@@ -3,11 +3,18 @@
     <Suspense>
         <FormData #default />
         <template #fallback>
-           <!--  <v-skeleton-loader type="card"></v-skeleton-loader> -->
+            <v-container>
+                <v-skeleton-loader type="sentences@4"></v-skeleton-loader>    
+            </v-container>
         </template>
     </Suspense>
     <Suspense>
-        <Payments />
+        <Payments #default />
+        <template #fallback>
+            <v-container>
+                <v-skeleton-loader type="table-row-divider@3"></v-skeleton-loader>
+            </v-container>
+        </template>
     </Suspense>
 </template>
 

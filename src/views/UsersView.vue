@@ -1,6 +1,11 @@
 <template>
     <Suspense>
-        <TableUsers />
+        <TableUsers #default />
+        <template #fallback >
+            <v-container>
+                <v-skeleton-loader type="table"></v-skeleton-loader>
+            </v-container>
+        </template>
     </Suspense>
 </template>
 

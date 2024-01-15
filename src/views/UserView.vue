@@ -2,7 +2,12 @@
     <v-container>
         <h1 class="text-h5">Actualizar datos del socio {{ nroSocio }}/0</h1>
         <Suspense>
-            <UserEdit :nroSocio="nroSocio"/>
+            <UserEdit #default :nroSocio="nroSocio" />
+            <template #fallback>
+                <v-container>
+                    <v-skeleton-loader type="heading@4, actions"></v-skeleton-loader>
+                </v-container>
+            </template>
         </Suspense>
 
     </v-container>
