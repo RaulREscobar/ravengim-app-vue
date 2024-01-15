@@ -11,6 +11,7 @@ import { auth } from '@/firebase.js'
 import { useAuthStore } from '@/store/authStore'
 import UserStatus from '@/views/UserStatus.vue'
 import NewPay from '@/views/NewPay.vue'
+import ChangePassView from '@/views/ChangePassView.vue'
 import { getAuth } from 'firebase/auth'
 import { ref } from 'vue'
 
@@ -120,6 +121,23 @@ const routes = [
         path: '/users/:id',
         name: 'user',
         component: UserView,
+        meta: {
+          requiereAuth: true,
+          rol: "admin",
+        },
+        beforeEnter: (to, from, next) => {
+          const authStore = useAuthStore();
+          if (to.meta.rol !== authStore.user.rol) {
+            next('/')
+          } else {
+            next()
+          }
+        },
+      },
+      {
+        path: '/users/change-pass/:id',
+        name: 'change-pass',
+        component: ChangePassView,
         meta: {
           requiereAuth: true,
           rol: "admin",
