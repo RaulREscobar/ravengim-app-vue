@@ -1,7 +1,10 @@
 <template>
     <Avatar />
     <Suspense>
-        <FormData />
+        <FormData #default />
+        <template #fallback>
+           <!--  <v-skeleton-loader type="card"></v-skeleton-loader> -->
+        </template>
     </Suspense>
     <Suspense>
         <Payments />

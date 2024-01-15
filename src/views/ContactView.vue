@@ -3,10 +3,10 @@
         <TitleView title="CONTACTANOS" class="d-flex flex-column align-center" />   
         <p class="mb-4 text-center ">
             Puedes Contactarnos por Whatsaap (
-                <v-btn color="green" variant="text" icon="mdi-whatsapp" size=""></v-btn>
+                <v-btn color="green" variant="text" icon="mdi-whatsapp" ></v-btn>
                 ), nuestaras redes (
-                <v-btn color="blue" variant="text" icon="mdi-facebook" size=""></v-btn>,
-                <v-btn color="red" variant="text" icon="mdi-instagram" size=""></v-btn>
+                <v-btn color="blue" variant="text" icon="mdi-facebook" ></v-btn>,
+                <v-btn color="red" variant="text" icon="mdi-instagram" ></v-btn>
                 ) o dejarnos un mensaje.
             <br />
             Algunos de nuestro equipo te contestara pronto.

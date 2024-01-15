@@ -11,7 +11,7 @@
     "deploy": "firebase deploy --only hosting"
   },
   "dependencies": {
-    "@mdi/font": "7.0.96",
+    "@mdi/font": "^7.4.47",
     "@mercadopago/sdk-react": "^0.0.14",
     "core-js": "^3.8.3",
     "firebase": "^9.23.0",
@@ -20,10 +20,10 @@
     "qrcode-reader-vue3": "^3.1.2",
     "qrcode.vue": "^3.4.1",
     "roboto-fontface": "*",
-    "vue": "^3.2.13",
+    "vue": "^3.4.13",
     "vue-router": "^4.0.0",
     "vue3-qr-reader": "^1.0.0",
-    "vuetify": "^3.0.0",
+    "vuetify": "^3.4.10",
     "webfontloader": "^1.0.0"
   },
   "devDependencies": {
