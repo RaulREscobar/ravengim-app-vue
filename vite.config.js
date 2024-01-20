@@ -21,6 +21,8 @@ export default defineConfig({
       },
     }),
     VitePWA({ 
+      mode: 'development',
+      base: '/',
       registerType: 'autoUpdate',
       devOptions: {
         enabled: true
@@ -46,7 +48,7 @@ export default defineConfig({
             sizes: '512x512',
             type: 'image/png'
           }
-        ]
+        ],
       },
     })
   ],
